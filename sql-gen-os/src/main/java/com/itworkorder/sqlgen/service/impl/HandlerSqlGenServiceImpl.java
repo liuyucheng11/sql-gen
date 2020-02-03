@@ -26,7 +26,7 @@ public class HandlerSqlGenServiceImpl implements HandlerSqlGenService {
     @SuppressWarnings("unchecked")
     public Result handler(String json) {
         JSONObject jsonObject = JSONObject.parseObject(json);
-        TableNameEnum tableNameEnum = SqlContentTemplate.tableCache.get(jsonObject.get("code"));
+        TableNameEnum tableNameEnum = SqlContentTemplate.tableCache.get(jsonObject.get("sqlCode"));
         BaseSqlGenService service = handlerContext.getInstance(tableNameEnum);
         return service.handGenSql(JSON.parseObject(json,tableNameEnum.getDto()));
     }

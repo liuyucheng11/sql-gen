@@ -1,5 +1,6 @@
 package com.itworkorder.sqlgen.common.tables;
 
+import com.itworkorder.sqlgen.pojo.contract.ContractDetailDTO;
 import com.itworkorder.sqlgen.pojo.contractapply.ContractApplyDetailDTO;
 import com.itworkorder.sqlgen.pojo.supplier.BaseDTO;
 import com.itworkorder.sqlgen.pojo.supplier.SupplierBankRelationDTO;
@@ -16,7 +17,8 @@ import org.jetbrains.annotations.Contract;
 public enum TableNameEnum {
     T_SUPPLIER("供应商详情表", "t_contract_supplier_details", 1, SupplierDTO.class),
     T_SUPPLIER_BANK_RELATION("供应商银行关系表", "t_contract_supplier_bank_relation ", 2, SupplierBankRelationDTO.class),
-    T_CONTRACT_APPLY_DETAIL("采购申请明细表", "t_contract_supplier", 3, ContractApplyDetailDTO.class);
+    T_CONTRACT_APPLY_DETAIL("采购申请明细表", "t_contract_supplier", 3, ContractApplyDetailDTO.class),
+    T_CONTRACT_DETAIL("采购合同明细","t_contract_detail",4, ContractDetailDTO.class);
     private String tableName;
 
     private String tableDesc;

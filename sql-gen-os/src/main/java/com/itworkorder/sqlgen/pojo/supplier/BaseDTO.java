@@ -9,27 +9,27 @@ public class BaseDTO {
     /**
      * 对应工单处理大类 表名
      */
-    private Integer code;
+    private Integer sqlCode;
 
     /**
      * 工单下类型
      */
-    private Integer type;
+    private Integer sqlType;
 
 
-    public Integer getCode() {
-        return code;
+    public Integer getSqlCode() {
+        return sqlCode;
     }
 
-    public void setCode(Integer code) {
-        this.code = code;
+    public void setSqlCode(Integer sqlCode) {
+        this.sqlCode = sqlCode;
     }
 
-    public Integer getType() {
-        return type;
+    public Integer getSqlType() {
+        return sqlType;
     }
 
-    public void setType(Integer type) {
-        this.type = type;
+    public void setSqlType(Integer sqlType) {
+        this.sqlType = sqlType;
     }
 }

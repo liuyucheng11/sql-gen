@@ -36,10 +36,10 @@ public class SupplierBankSqlGenServiceImpl extends AbstractHandSqlGenHandler<Sup
         StringBuffer buffer = getBuffer();
         buffer.append(MessageFormat.format(SqlContentTemplate.INSERT_BASE_UP_DATA, getBackUpTableName(),
                 getBindTableName(), dto.getId().toString())).append(";\n");
-        if (dto.getType().equals(DELETE_SUPPLIER_BANK.getType())) {
+        if (dto.getSqlType().equals(DELETE_SUPPLIER_BANK.getType())) {
             buffer.append(MessageFormat.format(SqlContentTemplate.DELETE_DATA_BY_FIELD, getBindTableName(),
                     "id", dto.getId().toString())).append(";\n");
-        } else if (UPDATE_BANK_ACCOUNT.getType().equals(dto.getType())) {
+        } else if (UPDATE_BANK_ACCOUNT.getType().equals(dto.getSqlType())) {
             buffer.append(MessageFormat.format(SqlContentTemplate.UPDATE_SIMPLE_FIELD, getBindTableName(), "bank_account", "'"+dto.getBankAccount()+"'",
                     "id", dto.getId()));
         }

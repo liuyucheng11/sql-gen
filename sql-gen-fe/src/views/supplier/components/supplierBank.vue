@@ -59,8 +59,8 @@
                 bankAccount: '',
                 formData: {
                     id: '',
-                    code: 2,
-                    type: '',
+                    sqlCode: 2,
+                    sqlType: '',
                 },
                 options: [
                     {
@@ -78,7 +78,7 @@
         },
         watch: {
             selectType() {
-                this.formData.type = this.selectType;
+                this.formData.sqlType = this.selectType;
             }
         },
         methods: {

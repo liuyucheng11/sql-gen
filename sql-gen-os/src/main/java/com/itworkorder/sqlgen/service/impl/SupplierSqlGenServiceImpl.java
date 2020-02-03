@@ -39,16 +39,16 @@ public class SupplierSqlGenServiceImpl extends AbstractHandSqlGenHandler<Supplie
         String tableName = T_SUPPLIER.getTableName();
         buffer.append(MessageFormat.format(SqlContentTemplate.INSERT_BACKUP_DATA, getBackUpTableName(),
                 tableName, tableName, NO, "'" + dto.getSupplierNo() + "'")).append("; \n");
-        if (dto.getType().equals(UPDATE_SUPPLIER_AU.getType())) {
+        if (dto.getSqlType().equals(UPDATE_SUPPLIER_AU.getType())) {
             buffer.append(MessageFormat.format(SqlContentTemplate.UPDATE_SUPPLIER_AUTH,
                     dto.getAuthenticationStatus(), NO, "'" + dto.getSupplierNo() + "'"));
-        } else if (dto.getType().equals(UPDATE_SUPPLIER_NAME.getType())) {
+        } else if (dto.getSqlType().equals(UPDATE_SUPPLIER_NAME.getType())) {
             buffer.append(MessageFormat.format(SqlContentTemplate.UPDATE_SUPPLIER_NAME,
                     "'" + dto.getSupplierName() + "'", NO, "'" + dto.getSupplierNo() + "'"));
-        } else if (dto.getType().equals(UPDATE_SUPPLIER_EFFECTIVE_DATE.getType())) {
+        } else if (dto.getSqlType().equals(UPDATE_SUPPLIER_EFFECTIVE_DATE.getType())) {
             buffer.append(MessageFormat.format(SqlContentTemplate.UPDATE_SUPPLIER_EFFECTIVE_DATE,
                     SafeDateUtil.format(dto.getEffeTime(), DatePatternEnum.YYYY_MM_DD), dto.getSupplierNo()));
-        } else if (dto.getType().equals(UPDATE_SUPPLIER_ALL_SUPPLIER_STORE.getType())) {
+        } else if (dto.getSqlType().equals(UPDATE_SUPPLIER_ALL_SUPPLIER_STORE.getType())) {
             buffer.append(MessageFormat.format(SqlContentTemplate.UPDATE_SIMPLE_FIELD, getBindTableName(),
                     "all_supply_store", dto.getAllSupplyStore(), NO, "'" + dto.getSupplierNo() + "'"));
         }

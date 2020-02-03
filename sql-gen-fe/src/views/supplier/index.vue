@@ -93,8 +93,8 @@
                 ],
                 supplierStatus: [],
                 formData: {
-                    code: 1,
-                    type: null,
+                    sqlCode: 1,
+                    sqlType: null,
                     supplierNo: '',
                     effeTime: null,
                     supplierName: '',
@@ -134,7 +134,7 @@
         },
         watch: {
             selectType() {
-                this.formData.type = this.selectType;
+                this.formData.sqlType = this.selectType;
             }
         },
         methods: {
