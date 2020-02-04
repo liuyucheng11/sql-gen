@@ -1,7 +1,6 @@
 package com.itworkorder.sqlgen.common.tables;
 
-import static com.itworkorder.sqlgen.common.tables.TableNameEnum.T_SUPPLIER;
-import static com.itworkorder.sqlgen.common.tables.TableNameEnum.T_SUPPLIER_BANK_RELATION;
+import static com.itworkorder.sqlgen.common.tables.TableNameEnum.*;
 
 /**
  * <p>表处理事件枚举</p>
@@ -18,7 +17,9 @@ public enum TableSolution {
     UPDATE_SUPPLIER_ALL_SUPPLIER_STORE(T_SUPPLIER, 4, "修改是否所有门店"),
     /**---------------------------------------------------------------------*/
     DELETE_SUPPLIER_BANK(T_SUPPLIER_BANK_RELATION,1,"删除供应商银行"),
-    UPDATE_BANK_ACCOUNT(T_SUPPLIER_BANK_RELATION,2,"修改账号信息");
+    UPDATE_BANK_ACCOUNT(T_SUPPLIER_BANK_RELATION,2,"修改账号信息"),
+    /**--------------------------------------------------------------*/
+    UPDATE_CONTRACT_END_DATE(T_CONTRACT_DETAIL,1,"修改合同结束时间");
     private TableNameEnum tableNameEnum;
 
     private Integer type;

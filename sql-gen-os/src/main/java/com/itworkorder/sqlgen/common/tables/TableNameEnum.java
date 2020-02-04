@@ -5,7 +5,6 @@ import com.itworkorder.sqlgen.pojo.contractapply.ContractApplyDetailDTO;
 import com.itworkorder.sqlgen.pojo.supplier.BaseDTO;
 import com.itworkorder.sqlgen.pojo.supplier.SupplierBankRelationDTO;
 import com.itworkorder.sqlgen.pojo.supplier.SupplierDTO;
-import org.jetbrains.annotations.Contract;
 
 /**
  * <p>表枚举</p>

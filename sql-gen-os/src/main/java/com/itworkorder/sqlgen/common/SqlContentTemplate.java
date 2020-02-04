@@ -47,6 +47,13 @@ public class SqlContentTemplate {
     public static final String UPDATE_SIMPLE_FIELD = "update {0} set {1} = {2} where {3} = {4} ";
 
     /**
+     * 通用 update sql
+     */
+    public static final String GENERAL_UPDATE = "update {0} set {1} where {2}";
+
+    public static final String GENERAL_INSERT = "insert into {0} select * from {1} where {2}";
+
+    /**
      * 基础插入备份数据
      */
     public static final String INSERT_BASE_UP_DATA = "insert into {0} where select * from {1} where id = {2}";

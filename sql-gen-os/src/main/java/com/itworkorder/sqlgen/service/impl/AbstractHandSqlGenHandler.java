@@ -73,6 +73,7 @@ public abstract class AbstractHandSqlGenHandler<T extends BaseDTO> implements Ba
             }
         } else {
             redis.set(dateKey, SafeDateUtil.format(new Date(), DatePatternEnum.YYYYMMDD));
+            redis.expire(dateKey, 24 * 3600);
             redis.set(numKey, 1L);
         }
         String prefix = "_" + redis.get(dateKey) + "_" + redis.get(numKey);
