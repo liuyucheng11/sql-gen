@@ -3,6 +3,7 @@ package com.itworkorder.sqlgen.controller.user;
 import com.itworkorder.sqlgen.common.Result;
 import org.springframework.stereotype.Controller;
 import com.itworkorder.sqlgen.pojo.User;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -35,5 +36,10 @@ public class UserController {
         return Result.getSuccessRe(temp);
     }
 
+    @RequestMapping("/logout")
+    @ResponseBody
+    public Result logout(){
+        return Result.getSuccessRe();
+    }
 
 }

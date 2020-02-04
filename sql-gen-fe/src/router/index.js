@@ -187,14 +187,14 @@ export const asyncRoutes = [
   },
 
   /** when your routing map is too long, you can split it into small modules **/
-  componentsRouter,
-  chartsRouter,
-  nestedRouter,
-  tableRouter,
+  // componentsRouter,
+  // chartsRouter,
+  // nestedRouter,
+  // tableRouter,
   supplierRouter,
   contractDetailRouter,
 
-  {
+  /*{
     path: '/example',
     component: Layout,
     redirect: '/example/list',
@@ -224,9 +224,9 @@ export const asyncRoutes = [
         meta: { title: 'Article List', icon: 'list' }
       }
     ]
-  },
+  },*/
 
-  {
+  /*{
     path: '/tab',
     component: Layout,
     children: [
@@ -237,9 +237,9 @@ export const asyncRoutes = [
         meta: { title: 'Tab', icon: 'tab' }
       }
     ]
-  },
+  },*/
 
-  {
+  /*{
     path: '/error',
     component: Layout,
     redirect: 'noRedirect',
@@ -263,7 +263,7 @@ export const asyncRoutes = [
       }
     ]
   },
-
+*/
   {
     path: '/error-log',
     component: Layout,
@@ -277,7 +277,7 @@ export const asyncRoutes = [
     ]
   },
 
-  {
+ /* {
     path: '/excel',
     component: Layout,
     redirect: '/excel/export-excel',
@@ -312,9 +312,9 @@ export const asyncRoutes = [
         meta: { title: 'Upload Excel' }
       }
     ]
-  },
+  },*/
 
-  {
+ /* {
     path: '/zip',
     component: Layout,
     redirect: '/zip/download',
@@ -385,7 +385,7 @@ export const asyncRoutes = [
         meta: { title: 'External Link', icon: 'link' }
       }
     ]
-  },
+  },*/
 
   // 404 page must be placed at the end !!!
   { path: '*', redirect: '/404', hidden: true }
