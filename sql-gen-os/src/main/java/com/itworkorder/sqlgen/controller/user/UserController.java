@@ -6,8 +6,10 @@ import com.itworkorder.sqlgen.pojo.User;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -40,6 +42,17 @@ public class UserController {
     @ResponseBody
     public Result logout(){
         return Result.getSuccessRe();
+    }
+
+    @RequestMapping("/test.do")
+    @ResponseBody
+    public Result test(@RequestBody List<User> user){
+         return Result.getSuccessRe();
+    }
+
+    @RequestMapping("/index.do")
+    public ModelAndView index(){
+        return new ModelAndView("index");
     }
 
 }
