@@ -116,6 +116,18 @@
 
         </dependency>
 
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>easyexcel</artifactId>
+            <version>2.1.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.ucarinner</groupId>
+            <artifactId>ucarinner-commons</artifactId>
+            <version>1.0.100-SNAPSHOT</version>
+        </dependency>
+
 
     </dependencies>
 
