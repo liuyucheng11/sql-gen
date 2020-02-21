@@ -2,13 +2,12 @@ package com.itworkorder.sqlgen.service.jar;
 
 import com.itworkorder.sqlgen.service.JarAnalyseService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.hadoop.hbase.mapreduce.HashTable;
 import org.apache.poi.hssf.usermodel.HSSFPrintSetup;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.hssf.usermodel.HeaderFooter;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.Footer;
-import org.apache.poi.ss.usermodel.Header;
-import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFPrintSetup;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -30,6 +29,7 @@ import java.lang.reflect.Type;
 import java.math.BigDecimal;
 import java.net.URL;
 import java.net.URLClassLoader;
+import java.security.SecureRandom;
 import java.util.*;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
@@ -53,6 +53,8 @@ public class JarAnalyseServiceImpl implements JarAnalyseService {
 
     private static final String TABLE_NAME = "生成表";
 
+    private static final ArrayList<String> RESOLVE = new ArrayList<>();
+
     static {
         unResolveClass.add(int.class);
         unResolveClass.add(Integer.class);
@@ -73,6 +75,23 @@ public class JarAnalyseServiceImpl implements JarAnalyseService {
         unResolveClass.add(boolean.class);
         unResolveClass.add(Object.class);
         unResolveClass.add(Map.class);
+        unResolveClass.add(ArrayList.class);
+        unResolveClass.add(HashMap.class);
+        unResolveClass.add(HashTable.class);
+        unResolveClass.add(SecureRandom.class);
+    }
+
+    static {
+        RESOLVE.add("dto");
+        RESOLVE.add("enum");
+        RESOLVE.add("vo");
+        RESOLVE.add("req");
+        RESOLVE.add("query");
+        RESOLVE.add("parameter");
+        RESOLVE.add("param");
+        RESOLVE.add("view");
+        RESOLVE.add("basic");
+        RESOLVE.add("model");
     }
 
     @Override
@@ -129,7 +148,10 @@ public class JarAnalyseServiceImpl implements JarAnalyseService {
         if (!classSet.isEmpty()) {
             for (Class<?> clazz : classSet) {
                 try {
-                    pointOut(clazz, sheet, true);
+                    String clazzName = clazz.getName().substring(clazz.getName().lastIndexOf("."));
+                    if (canResolve(clazzName)) {
+                        pointOut(clazz, sheet, true);
+                    }
                 } catch (NoSuchFieldException e) {
                     log.error("没有这个变量!");
                 }
@@ -146,6 +168,11 @@ public class JarAnalyseServiceImpl implements JarAnalyseService {
         System.out.println(clazz.getName().substring(clazz.getName().lastIndexOf(".") + 1));
         Cell cell = row.createCell(0);
         cell.setCellValue(clazz.getName().substring(clazz.getName().lastIndexOf(".") + 1));
+        //如果是枚举类型
+        if (clazz.isEnum()) {
+            resolveEnum(clazz, sheet);
+            return;
+        }
         for (Field field : fields) {
             //存在自关联对象的话不重复设置
             if (field.getName().equals("serialVersionUID")) {
@@ -200,7 +227,7 @@ public class JarAnalyseServiceImpl implements JarAnalyseService {
                                 Cell cell1 = newRow.createCell(1);
                                 cell1.setCellValue(field.getName());
                                 Cell cell2 = newRow.createCell(2);
-                                cell2.setCellValue("List<" + type.getTypeName()  + ">");
+                                cell2.setCellValue("List<" + type.getTypeName() + ">");
                             }
                         }
                     }
@@ -274,5 +301,30 @@ public class JarAnalyseServiceImpl implements JarAnalyseService {
             log.error(e.getMessage());
         }
 
+    }
+
+    /**
+     * 判断是否解析
+     *
+     * @return
+     */
+    private static boolean canResolve(String clazzName) {
+        for (String val : RESOLVE) {
+            if (StringUtils.containsIgnoreCase(clazzName, val)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+    public static <T> void resolveEnum(Class<T> clazz, XSSFSheet sheet) {
+        for (T t : clazz.getEnumConstants()) {
+            Row newRow = sheet.createRow(sheet.getLastRowNum() + 1);
+            Cell cell1 = newRow.createCell(1);
+            cell1.setCellValue("枚举类型");
+            Cell cell2 = newRow.createCell(2);
+            cell2.setCellValue(t.toString());
+        }
     }
 }
