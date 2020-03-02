@@ -135,7 +135,7 @@ public class JarAnalyseServiceImpl implements JarAnalyseService {
         } finally {
             if (temp != null) {
                 boolean result = false;
-                while (result) {
+                while (!result) {
                     result = temp.delete();
                 }
             }
